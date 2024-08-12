@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Widget } from "./components/Widget";
 import { Header } from "./components/Header";
 import Home from "./pages/Home";
-import Recommendation from "./pages/Recommendation";
+import BookSearch from "./pages/BookSearch";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/recommendation" element={<Recommendation />} />
+          <Route path="/recommendation" element={<BookSearch />} />
         </Routes>
       </BrowserRouter>
     </>
