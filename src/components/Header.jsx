@@ -1,6 +1,7 @@
 import { Box } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "./ui/button";
+import { ModeToggle } from "./mode-toggle";
 
 export const Header = () => {
   return (
@@ -33,7 +34,8 @@ export const Header = () => {
               My Libary
             </Button>
           </div>
-          <div>
+          <div className="flex gap-4">
+            <ModeToggle />
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
