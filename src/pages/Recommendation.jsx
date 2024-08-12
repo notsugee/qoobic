@@ -18,7 +18,7 @@ export default function Recommendation() {
         </p>
         <div className=" flex mt-4 justify-center space-x-2">
           <Input
-            placeholder="What would you like to read about?"
+            placeholder="What would you like to read today?"
             className="w-full md:w-[400px] rounded-full"
           />
           <Select>
