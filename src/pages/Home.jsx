@@ -18,7 +18,9 @@ const Home = () => {
               </p>
             </div>
             <div className="flex justify-start">
-              <Button className="mt-4">Get Started</Button>
+              <Button className="mt-4">
+                <a href="/recommendation">Get Started</a>
+              </Button>
             </div>
           </div>
           <div className="flex rotate-45">
