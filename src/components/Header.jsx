@@ -6,7 +6,7 @@ import { ModeToggle } from "./mode-toggle";
 export const Header = () => {
   return (
     <div className="sticky top-0 z-50">
-      <div className="container flex items-center justify-between h-16 bg-secondary rounded-full shadow-lg">
+      <div className="container flex items-center justify-between h-16 bg-background rounded-full shadow-lg">
         <div className="flex font-bold text-2xl">
           <Box className="h-10 w-10" />
           <div className="mt-1">
@@ -16,20 +16,20 @@ export const Header = () => {
         <div className="flex">
           <div className="flex mr-4">
             <Button
-              variant="secondary"
-              className="rounded-full hover:scale-105 transition-all hover:bg-slate-400 mx-2 font-bold"
+              variant="ghost"
+              className="rounded-full hover:scale-105 transition-all hover:bg-accent mx-2 font-bold"
             >
               <a href="/">Home</a>
             </Button>
             <Button
-              variant="secondary"
-              className="rounded-full hover:scale-105 transition-all hover:bg-slate-400 mx-2 font-bold"
+              variant="ghost"
+              className="rounded-full hover:scale-105 transition-all hover:bg-accent mx-2 font-bold"
             >
               <a href="/recommendation">Recommendation</a>
             </Button>
             <Button
-              variant="secondary"
-              className="rounded-full hover:scale-105 transition-all hover:bg-slate-400 font-bold"
+              variant="ghost"
+              className="rounded-full hover:scale-105 transition-all hover:bg-accent font-bold"
             >
               My Libary
             </Button>

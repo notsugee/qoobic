@@ -1,8 +1,9 @@
 import { Button } from "../components/ui/button";
 import Book from "../../public/Book.svg";
-import { Header } from "../components/Header";
+import { useTheme } from "@/components/theme-provider";
 
 const Home = () => {
+  const { theme } = useTheme();
   return (
     <>
       <section className="relative grow">
@@ -24,7 +25,11 @@ const Home = () => {
             </div>
           </div>
           <div className="flex rotate-45">
-            <img src={Book} alt="Book" className="w-[560px]" />
+            <img
+              src={Book}
+              alt="Book"
+              className={`w-[560px] ${theme === "dark" ? "invert" : ""}`}
+            />
           </div>
         </div>
       </section>
