@@ -18,13 +18,19 @@ export const Header = () => {
               variant="secondary"
               className="rounded-full hover:scale-105 transition-all hover:bg-slate-400 mx-2 font-bold"
             >
+              <a href="/">Home</a>
+            </Button>
+            <Button
+              variant="secondary"
+              className="rounded-full hover:scale-105 transition-all hover:bg-slate-400 mx-2 font-bold"
+            >
               <a href="/recommendation">Recommendation</a>
             </Button>
             <Button
               variant="secondary"
               className="rounded-full hover:scale-105 transition-all hover:bg-slate-400 font-bold"
             >
-              Item2
+              My Libary
             </Button>
           </div>
           <div>
