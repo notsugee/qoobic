@@ -8,6 +8,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 
 const BookSearch = () => {
   const [bookName, setBookName] = useState("");
@@ -31,6 +41,7 @@ const BookSearch = () => {
       }
       const data = await response.json();
       setBooks(data);
+      console.log(data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -94,6 +105,24 @@ const BookSearch = () => {
                 <p className="text-muted-foreground line-clamp-3">
                   {book.description || "No description available"}
                 </p>
+                <Drawer>
+                  <DrawerTrigger>Read more</DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>{book.title}</DrawerTitle>
+                      <DrawerDescription>
+                        <p className="text-muted-foreground">
+                          {book.description}
+                        </p>
+                      </DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                      <DrawerClose>
+                        <Button className="rounded-full">Close</Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
               </div>
               <div>
                 <p className="text-muted-background mt-4">
