@@ -13,7 +13,7 @@ const Home = () => {
               <h1 className="text-left mb-5 text-5xl font-extrabold leading-tight">
                 Discover Your Next Favorite Book with Qoobic
               </h1>
-              <p className="text-left text-gray-500 text-lg">
+              <p className="text-left text-gray-300 text-lg">
                 Personalized recommendations powered by advanced AI and
                 sentiment analysis.
               </p>
