@@ -1,5 +1,5 @@
 import { Button } from "../components/ui/button";
-import Book from "../../public/Book.svg";
+import Book from "../assets/Book.svg";
 import { useTheme } from "@/components/theme-provider";
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
               <h1 className="text-left mb-5 text-5xl font-extrabold leading-tight">
                 Discover Your Next Favorite Book with Qoobic
               </h1>
-              <p className="text-left text-gray-300 text-lg">
+              <p className="text-left text-muted-foreground text-lg">
                 Personalized recommendations powered by advanced AI and
                 sentiment analysis.
               </p>
