@@ -92,9 +92,14 @@ const BookSearch = () => {
           books.map((book, index) => (
             <div
               key={index}
-              className="bg-background p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col"
+              className="bg-background p-4 rounded-lg shadow-sm hover:shadow-md flex flex-col hover:scale-105 transition-all"
             >
               <div className="flex-1">
+                <img
+                  src={book.thumbnail}
+                  alt={`Thumbnail of ${book.title}`}
+                  className="w-full h-48 object-cover rounded mb-4"
+                />
                 <h3 className="text-lg font-semibold mb-2">{book.title}</h3>
                 <p className="text-muted-foreground mb-2">
                   {book.authors
@@ -111,6 +116,11 @@ const BookSearch = () => {
                     <DrawerHeader>
                       <DrawerTitle>{book.title}</DrawerTitle>
                       <DrawerDescription>
+                        <img
+                          src={book.thumbnail}
+                          alt={`Thumbnail of ${book.title}`}
+                          className="w-full h-48 object-scale-down rounded mb-4"
+                        />
                         <p className="text-muted-foreground">
                           {book.description}
                         </p>
