@@ -24,12 +24,14 @@ const BookSearch = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("book"); // Default to "book"
 
   const searchBook = async () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://127.0.0.1:5000/recommend", {
+      const endpoint = selectedOption === "book" ? "/recommend" : "/phrase";
+      const response = await fetch(`http://127.0.0.1:5000${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,6 +51,13 @@ const BookSearch = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      searchBook();
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 md:px-6 md:py-12">
       <div className="mb-8 md:mb-12">
@@ -56,21 +65,23 @@ const BookSearch = () => {
         <p className="text-muted-foreground">
           Discover your next great read from our curated selection.
         </p>
-        <div className=" flex mt-4 justify-center space-x-2">
+        <div className="flex mt-4 justify-center space-x-2">
           <Input
             placeholder="What would you like to read about?"
             className="w-full md:w-[400px] rounded-full"
             value={bookName}
             onChange={(e) => setBookName(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
-          <Select>
+          <Select
+            value={selectedOption}
+            onValueChange={(value) => setSelectedOption(value)}
+          >
             <SelectTrigger className="w-[180px] rounded-full">
               <SelectValue placeholder="Book" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="book" selected="selected">
-                Book
-              </SelectItem>
+              <SelectItem value="book">Book</SelectItem>
               <SelectItem value="phrase">Phrase</SelectItem>
             </SelectContent>
           </Select>
