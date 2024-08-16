@@ -37,8 +37,8 @@ export const Header = () => {
           <div className="flex gap-4">
             <ModeToggle />
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarImage src="" />
+              <AvatarFallback>PS</AvatarFallback>
             </Avatar>
           </div>
         </div>
