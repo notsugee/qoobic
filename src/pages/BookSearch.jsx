@@ -31,13 +31,16 @@ const BookSearch = () => {
     setError(null);
     try {
       const endpoint = selectedOption === "book" ? "/recommend" : "/phrase";
-      const response = await fetch(`http://127.0.0.1:5000${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ book_name: bookName }),
-      });
+      const response = await fetch(
+        `https://firm-next-bluegill.ngrok-free.app${endpoint}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ book_name: bookName }),
+        }
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch book recommendations");
       }
