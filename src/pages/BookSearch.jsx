@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,13 +18,30 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { useNavigate } from "react-router-dom/dist";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 const BookSearch = () => {
   const [bookName, setBookName] = useState("");
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [selectedOption, setSelectedOption] = useState("book"); // Default to "book"
+  const [selectedOption, setSelectedOption] = useState("book");
+  const [library, setLibrary] = useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log("uid", uid);
+      } else {
+        navigate("/login");
+        console.log("user is logged out");
+      }
+    });
+  }, []);
 
   const searchBook = async () => {
     setLoading(true);
@@ -58,6 +75,33 @@ const BookSearch = () => {
     if (e.key === "Enter") {
       e.preventDefault();
       searchBook();
+    }
+  };
+
+  const addToLibrary = async (book) => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid;
+        const docRef = doc(db, "qoobiclibrary", userId);
+
+        await setDoc(doc(docRef, "books", book.title), {
+          title: book.title,
+          authors: book.authors,
+          categories: book.categories,
+          userId: userId,
+          average_rating: book.average_rating,
+          thumbnail: book.thumbnail,
+          description: book.description,
+        });
+
+        alert(`${book.title} added to your library!`);
+      } else {
+        alert("You need to be logged in to add a book to your library.");
+      }
+    } catch (error) {
+      console.error("Error adding book to library: ", error);
+      alert("Failed to add the book to your library.");
     }
   };
 
@@ -152,7 +196,11 @@ const BookSearch = () => {
                 <p className="text-muted-background mt-4">
                   Average Rating: {book.average_rating || "N/A"}
                 </p>
-                <Button variant="outline" className="mt-4">
+                <Button
+                  variant="outline"
+                  className="mt-4"
+                  onClick={() => addToLibrary(book)}
+                >
                   Add to Library
                 </Button>
               </div>

@@ -1,9 +1,25 @@
+import React, { useEffect } from "react";
 import { Button } from "../components/ui/button";
 import Book from "../assets/Book.svg";
 import { useTheme } from "@/components/theme-provider";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { theme } = useTheme();
+  const navigate = useNavigate();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log("uid", uid);
+      } else {
+        console.log("user is logged out");
+      }
+    });
+  }, []);
+
   return (
     <>
       <section className="relative grow">
